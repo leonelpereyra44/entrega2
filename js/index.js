@@ -17,11 +17,7 @@ function buscarLibro(nombre){
             if(elemento.nombre === nombre){
                 flag2 = false;
                 flag = true;
-                alert(`
-                Nombre: ${elemento.nombre} 
-                Editorial: ${elemento.editorial}
-                `);
-                break;
+                return (elemento);
             } else if(elemento.nombre != nombre){
                 flag2 = true;
             }
@@ -35,19 +31,24 @@ function buscarLibro(nombre){
 
 while (true){
     let libronombre = '';
-    let flag = '';
-    let flag2 = '';
-    flag = prompt('¿Desea ingresar nuevo libro?(SI/NO)');
-    flag = flag.toLowerCase();
-    if (flag == 'no'){
-        flag2 = prompt('¿Desea buscar información sobre un libro?(SI/NO)');
-        flag2 = flag2.toLowerCase();
-        if (flag2 == 'si'){
+    let opcion = '';
+    let opcion2 = '';
+    opcion = prompt('¿Desea ingresar nuevo libro?(SI/NO)');
+    opcion = opcion.toLowerCase();
+    if (opcion == 'no'){
+        opcion2 = prompt('¿Desea buscar información sobre un libro?(SI/NO)');
+        opcion2 = opcion2.toLowerCase();
+        if ((opcion2 == 'si') && (array.length > 0)){
             libronombre = prompt('Ingrese nombre del libro');
-            buscarLibro(libronombre);
+            alert(`
+            Libro: ${buscarLibro(libronombre).nombre}
+            Editorial: ${buscarLibro(libronombre).editorial}`);
+
+        } else if((opcion2 == 'si') && (array.length == 0)){
+            alert('No hay libros ingresados!!!');
         } else{break;}
         
-    } else if (flag == 'si'){
+    } else if (opcion == 'si'){
         libronombre = prompt('Ingrese nombre del libro a guardar');
         libroeditorial = prompt('Ingrese editorial del libro');
         array.push(new Libro(libronombre, libroeditorial));
